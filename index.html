@@ -182,15 +182,22 @@ h2{
   <div class="card">
     <h2>Welcome back</h2>
 
-<input id="loginUser" placeholder="Username">
-<input id="loginPass" type="password" placeholder="Password">
+    <input id="loginUser" placeholder="Username">
+    <input id="loginPass" type="password" placeholder="Password">
 
-<button onclick="login()">Login</button>
+    <button onclick="login()">Login</button>
 
-<button class="secondary" onclick="forgotPassword()">
-  🔐 Forgot Password?
-</button> 
-    <p class="small">Create an account and get 50 Frost Coins 🪙</p>
+    <button class="secondary" onclick="forgotPassword()">
+      🔐 Forgot Password?
+    </button>
+
+    <button class="secondary" onclick="showSignup()">
+      Create account
+    </button>
+
+    <p class="small">
+      Create an account and get 50 Frost Coins 🪙
+    </p>
   </div>
 
 </div>
@@ -202,16 +209,30 @@ h2{
   <div class="logo">❄️ Frost AI</div>
 
   <div class="card">
+
     <h2>Create account</h2>
 
-    <input id="signupUser" placeholder="Choose username">
-    <input id="signupPass" type="password" placeholder="Choose password">
+    <input
+      id="signupUser"
+      placeholder="Choose username"
+    >
 
-    <button onclick="signup()">Create Account</button>
+    <input
+      id="signupPass"
+      type="password"
+      placeholder="Choose password"
+    >
 
-    <button class="secondary" onclick="showLogin()">
+    <button onclick="signup()">
+      Create Account
+    </button>
+
+    <button
+      class="secondary"
+      onclick="showLogin()">
       Back to Login
     </button>
+
   </div>
 
 </div>
@@ -228,43 +249,85 @@ h2{
   </div>
 
   <div class="card">
-    <h2 id="welcomeUser">Welcome</h2>
-    <p class="small">What are you creating today?</p>
+
+    <h2 id="welcomeUser">
+      Welcome
+    </h2>
+
+    <p class="small">
+      What are you creating today?
+    </p>
+
   </div>
 
   <div class="tools">
 
-    <div class="tool" onclick="openTool('AI Image')">
+    <div
+      class="tool"
+      onclick="openTool('AI Image')">
+
       <div class="icon">🎨</div>
+
       <h3>AI Image</h3>
+
       <p>Create images from ideas</p>
+
     </div>
 
-    <div class="tool" onclick="openTool('AI Video')">
+
+    <div
+      class="tool"
+      onclick="openTool('AI Video')">
+
       <div class="icon">🎬</div>
+
       <h3>AI Video</h3>
+
       <p>Create AI videos</p>
+
     </div>
 
-    <div class="tool" onclick="openTool('AI Writer')">
+
+    <div
+      class="tool"
+      onclick="openTool('AI Writer')">
+
       <div class="icon">✍️</div>
+
       <h3>AI Writer</h3>
+
       <p>Write with AI</p>
+
     </div>
 
-    <div class="tool" onclick="openTool('AI Music')">
+
+    <div
+      class="tool"
+      onclick="openTool('AI Music')">
+
       <div class="icon">🎵</div>
+
       <h3>AI Music</h3>
+
       <p>Create music</p>
+
     </div>
 
   </div>
 
-  <button class="secondary" onclick="logout()">
+
+  <button
+    class="secondary"
+    onclick="logout()">
+
     Logout
+
   </button>
 
-  <p id="toolMessage" class="small"></p>
+  <p
+    id="toolMessage"
+    class="small">
+  </p>
 
 </div>
 
@@ -272,8 +335,12 @@ h2{
 <!-- AI IMAGE -->
 <div id="imagePage" class="hidden">
 
-  <button class="back" onclick="backDashboard()">
+  <button
+    class="back"
+    onclick="backDashboard()">
+
     ← Back
+
   </button>
 
   <div class="card">
@@ -290,11 +357,17 @@ h2{
     ></textarea>
 
     <button onclick="generateImage()">
+
       ✨ Generate Image — 10 🪙
+
     </button>
 
-    <div id="imagePreview" class="preview">
+    <div
+      id="imagePreview"
+      class="preview">
+
       Your generated image will appear here.
+
     </div>
 
   </div>
@@ -305,8 +378,12 @@ h2{
 <!-- AI WRITER -->
 <div id="writerPage" class="hidden">
 
-  <button class="back" onclick="backDashboard()">
+  <button
+    class="back"
+    onclick="backDashboard()">
+
     ← Back
+
   </button>
 
   <div class="card">
@@ -319,16 +396,23 @@ h2{
     ></textarea>
 
     <button onclick="generateWriter()">
+
       ✨ Generate — 10 🪙
+
     </button>
 
-    <div id="writerResult" class="result hidden"></div>
+    <div
+      id="writerResult"
+      class="result hidden">
+    </div>
 
     <button
       id="copyButton"
       class="secondary hidden"
       onclick="copyWriter()">
+
       📋 Copy
+
     </button>
 
   </div>
@@ -339,16 +423,24 @@ h2{
 <!-- OTHER TOOLS -->
 <div id="comingPage" class="hidden">
 
-  <button class="back" onclick="backDashboard()">
+  <button
+    class="back"
+    onclick="backDashboard()">
+
     ← Back
+
   </button>
 
   <div class="card">
 
-    <h2 id="comingTitle">Frost AI</h2>
+    <h2 id="comingTitle">
+      Frost AI
+    </h2>
 
     <div class="preview">
+
       🚧 This Frost AI tool is coming soon.
+
     </div>
 
   </div>
@@ -360,307 +452,12 @@ h2{
 
 <script>
 
-let currentUser = localStorage.getItem("frostCurrentUser");
+let currentUser =
+  localStorage.getItem("frostCurrentUser");
+
 
 function getUsers(){
-  return JSON.parse(localStorage.getItem("frostUsers") || "{}");
-}
 
-function saveUsers(users){
-  localStorage.setItem("frostUsers",JSON.stringify(users));
-}
-
-
-function showSignup(){
-  document.getElementById("loginPage").classList.add("hidden");
-  document.getElementById("signupPage").classList.remove("hidden");
-}
-
-
-function showLogin(){
-  document.getElementById("signupPage").classList.add("hidden");
-  document.getElementById("loginPage").classList.remove("hidden");
-}
-
-
-function signup(){
-
-  const username =
-    document.getElementById("signupUser").value.trim();
-
-  const password =
-    document.getElementById("signupPass").value;
-
-  if(!username || !password){
-    alert("Please fill in everything.");
-    return;
-  }
-
-  const users = getUsers();
-
-  if(users[username]){
-    alert("Username already exists.");
-    return;
-  }
-
-  users[username] = {
-    password:password,
-    coins:50
-  };
-
-  saveUsers(users);
-
-  alert("Account created! You received 50 Frost Coins 🪙");
-
-  document.getElementById("signupUser").value="";
-  document.getElementById("signupPass").value="";
-
-  showLogin();
-}
-
-
-function login(){
-
-  const username =
-    document.getElementById("loginUser").value.trim();
-
-  const password =
-    document.getElementById("loginPass").value;
-
-  const users = getUsers();
-
-  if(!users[username] || users[username].password !== password){
-    alert("Wrong username or password.");
-    return;
-  }
-
-  currentUser=username;
-
-  localStorage.setItem(
-    "frostCurrentUser",
-    username
-  );
-
-  showDashboard();
-}
-
-
-function showDashboard(){
-
-  if(!currentUser){
-    return;
-  }
-
-  document.getElementById("loginPage").classList.add("hidden");
-  document.getElementById("signupPage").classList.add("hidden");
-
-  document.getElementById("dashboard").classList.remove("hidden");
-
-  document.getElementById("welcomeUser").textContent =
-    "Welcome, " + currentUser + " 👋";
-
-  updateCoins();
-}
-
-
-function updateCoins(){
-
-  const users=getUsers();
-
-  if(users[currentUser]){
-    document.getElementById("coinBalance").textContent =
-      users[currentUser].coins;
-  }
-}
-
-
-function spendCoins(amount){
-
-  const users=getUsers();
-
-  if(!users[currentUser]){
-    return false;
-  }
-
-  if(users[currentUser].coins < amount){
-    alert("You don't have enough Frost Coins 🪙");
-    return false;
-  }
-
-  users[currentUser].coins -= amount;
-
-  saveUsers(users);
-
-  updateCoins();
-
-  return true;
-}
-
-
-function openTool(tool){
-
-  document.getElementById("dashboard")
-    .classList.add("hidden");
-
-  if(tool==="AI Image"){
-
-    document.getElementById("imagePage")
-      .classList.remove("hidden");
-
-    return;
-  }
-
-  if(tool==="AI Writer"){
-
-    document.getElementById("writerPage")
-      .classList.remove("hidden");
-
-    return;
-  }
-
-  document.getElementById("comingTitle").textContent =
-    tool;
-
-  document.getElementById("comingPage")
-    .classList.remove("hidden");
-}
-
-
-function backDashboard(){
-
-  document.getElementById("imagePage")
-    .classList.add("hidden");
-
-  document.getElementById("writerPage")
-    .classList.add("hidden");
-
-  document.getElementById("comingPage")
-    .classList.add("hidden");
-
-  document.getElementById("dashboard")
-    .classList.remove("hidden");
-
-  updateCoins();
-}
-
-
-function generateImage(){
-
-  const prompt =
-    document.getElementById("imagePrompt").value.trim();
-
-  if(!prompt){
-    alert("Describe the image first.");
-    return;
-  }
-
-  if(!spendCoins(10)){
-    return;
-  }
-
-  const preview =
-    document.getElementById("imagePreview");
-
-  preview.innerHTML = `
-    <div>
-      <div style="font-size:50px">❄️</div>
-      <br>
-      <strong>Frost AI is creating your image...</strong>
-      <br><br>
-      <span>${prompt}</span>
-    </div>
-  `;
-
-  setTimeout(()=>{
-
-    preview.innerHTML = `
-      <div>
-        <div style="font-size:70px">🖼️</div>
-        <br>
-        <strong>Image generation demo complete</strong>
-        <br><br>
-        <span>${prompt}</span>
-        <br><br>
-        <small>
-        Real AI image generation will be connected next.
-        </small>
-      </div>
-    `;
-
-  },1800);
-}
-
-
-function generateWriter(){
-
-  const prompt =
-    document.getElementById("writerPrompt").value.trim();
-
-  if(!prompt){
-    alert("Enter something to write.");
-    return;
-  }
-
-  if(!spendCoins(10)){
-    return;
-  }
-
-  const result =
-    document.getElementById("writerResult");
-
-  result.classList.remove("hidden");
-
-  result.innerHTML =
-    "✨ Frost AI Demo Response<br><br>" +
-    "Here is a creative response based on your idea:<br><br>" +
-    prompt +
-    "<br><br>" +
-    "Frost AI can turn this idea into polished content.";
-
-  document.getElementById("copyButton")
-    .classList.remove("hidden");
-}
-
-
-function copyWriter(){
-
-  const result =
-    document.getElementById("writerResult").innerText;
-
-  navigator.clipboard.writeText(result);
-
-  alert("Copied! 📋");
-}
-
-
-function logout(){
-
-  localStorage.removeItem("frostCurrentUser");
-
-  currentUser=null;
-
-  document.getElementById("dashboard")
-    .classList.add("hidden");
-
-  document.getElementById("imagePage")
-    .classList.add("hidden");
-
-  document.getElementById("writerPage")
-    .classList.add("hidden");
-
-  document.getElementById("comingPage")
-    .classList.add("hidden");
-
-  document.getElementById("loginPage")
-    .classList.remove("hidden");
-}
-
-
-if(currentUser){
-  showDashboard();
-}
-
-</script>
-
-</body>
-</html>
+  return JSON.parse(
+    localStorage.getItem("
+    
